@@ -26,6 +26,7 @@ plt.show()
 
 ##################### 6. analysis for columns 1-4
 
+
 new_data = data.loc[data.index.str.startswith('2018'), "theta_1":"theta_4"] 
 #new_data = data.loc["2018-01-01":"2018-12-31", "theta_1":"theta_4"] # another way
 

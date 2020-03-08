@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv("Data1.csv") #1 Import data
 
+
 #print(data.head()) #show first 5 rows of data
 
 data.set_index('Unnamed: 0', inplace = True) #2 Set first column as the index

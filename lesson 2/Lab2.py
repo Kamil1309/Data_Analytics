@@ -257,7 +257,51 @@ def plot_histograms_beta_m_p( size ):
     plt.suptitle('Poisson distribution, natural parametrization')
     plt.show()
 
-plot_histograms_beta_m_p( 2 )
-plot_histograms_beta_m_p( 10  )
-plot_histograms_beta_m_p( 100  )
-plot_histograms_beta_m_p( 1000  )
+# plot_histograms_beta_m_p( 2 )
+# plot_histograms_beta_m_p( 10  )
+# plot_histograms_beta_m_p( 100  )
+# plot_histograms_beta_m_p( 1000  )
+
+### 5 ###
+def plot_histograms_log_normal( mu, sigma ):
+    x = np.random.lognormal(mu, sigma, 10000)
+    print(x)
+    #cumulative=False
+    plt.subplot(3, 2, 1)
+    plt.hist(x, 10, density=True)
+    plt.title('cumulative=False')
+    plt.grid(True)
+
+    plt.subplot(3, 2, 3)
+    plt.hist(x, 40, density=True)
+    plt.ylabel('Probability')
+    plt.grid(True)
+
+    plt.subplot(3, 2, 5)
+    count, bins, ignored = plt.hist(x, 100, density=True)
+    x_l = np.linspace(min(bins), max(bins), 10000)
+    pdf = (np.exp(-(np.log(x_l) - mu)**2 / (2 * sigma**2))/ (x_l * sigma * np.sqrt(2 * np.pi)))
+    plt.plot(x_l, pdf, linewidth=2, color='r')
+    plt.xlabel('Value')
+    plt.grid(True)
+    #cumulative=True
+    plt.subplot(3, 2, 2)
+    plt.hist(x, 10, density=True, cumulative=True)
+    plt.title('cumulative=True')
+    plt.grid(True)
+
+    plt.subplot(3, 2, 4)
+    plt.hist(x, 40, density=True, cumulative=True)
+    plt.grid(True)
+
+    plt.subplot(3, 2, 6)
+    plt.hist(x, 100, density=True, cumulative=True)
+    plt.xlabel('Value')
+    plt.grid(True)
+
+    plt.suptitle('Poisson distribution, natural parametrization')
+    plt.show()
+
+plot_histograms_log_normal( 3, 0.5 )
+plot_histograms_log_normal( 5, 0.5  )
+plot_histograms_log_normal( 5, 1 )

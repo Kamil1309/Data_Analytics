@@ -213,7 +213,51 @@ def plot_histograms_beta_location( l, d ):
     plt.suptitle('Poisson distribution, natural parametrization')
     plt.show()
 
-plot_histograms_beta_location( 0.1, 0.1 )
-plot_histograms_beta_location( 0.1, 0.2  )
-plot_histograms_beta_location( 0.5, 0.1  )
-plot_histograms_beta_location( 0.5, 0.5  )
+# plot_histograms_beta_location( 0.1, 0.1 )
+# plot_histograms_beta_location( 0.1, 0.2  )
+# plot_histograms_beta_location( 0.5, 0.1  )
+# plot_histograms_beta_location( 0.5, 0.5  )
+
+def plot_histograms_beta_m_p( size ):
+    alpha = 0.485 * size
+    beta = size - alpha
+
+    x = np.random.beta(438 + alpha, 544 + beta, 10000)
+    print(x)
+    #cumulative=False
+    plt.subplot(3, 2, 1)
+    plt.hist(x, 10, density=True)
+    plt.title('cumulative=False')
+    plt.grid(True)
+
+    plt.subplot(3, 2, 3)
+    plt.hist(x, 40, density=True)
+    plt.ylabel('Probability')
+    plt.grid(True)
+
+    plt.subplot(3, 2, 5)
+    plt.hist(x, 100, density=True)
+    plt.xlabel('Value')
+    plt.grid(True)
+    #cumulative=True
+    plt.subplot(3, 2, 2)
+    plt.hist(x, 10, density=True, cumulative=True)
+    plt.title('cumulative=True')
+    plt.grid(True)
+
+    plt.subplot(3, 2, 4)
+    plt.hist(x, 40, density=True, cumulative=True)
+    plt.grid(True)
+
+    plt.subplot(3, 2, 6)
+    plt.hist(x, 100, density=True, cumulative=True)
+    plt.xlabel('Value')
+    plt.grid(True)
+
+    plt.suptitle('Poisson distribution, natural parametrization')
+    plt.show()
+
+plot_histograms_beta_m_p( 2 )
+plot_histograms_beta_m_p( 10  )
+plot_histograms_beta_m_p( 100  )
+plot_histograms_beta_m_p( 1000  )
